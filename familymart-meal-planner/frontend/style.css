@@ -1,0 +1,470 @@
+/* 全家便利商店配色參考 */
+:root {
+    --family-mart-green: #00704A; /* 全家綠 */
+    --family-mart-orange: #FF6600; /* 全家橘 */
+    --family-mart-blue: #005CAF; /* 全家藍 (輔助色) */
+    --light-gray: #f8f8f8; /* 更淺的背景灰 */
+    --medium-gray: #e0e0e0; /* 邊框和分隔線 */
+    --dark-gray: #333333; /* 主要文字 */
+    --text-light: #666666; /* 次要文字 */
+    --white: #ffffff;
+    --red-alert: #dc3545; /* 超標警示紅 */
+    --shadow-light: rgba(0, 0, 0, 0.08); /* 輕微陰影 */
+    --shadow-medium: rgba(0, 0, 0, 0.15); /* 中等陰影 */
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    font-size: 15px; /* 調整基礎字體大小 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 12px; /* 更圓潤的邊角 */
+    box-shadow: 0 8px 25px var(--shadow-light); /* 更明顯的陰影 */
+    overflow: hidden; /* 確保內容不溢出圓角 */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid var(--family-mart-green);
+}
+
+header h1 {
+    color: var(--family-mart-green);
+    font-size: 2.8em; /* 調整標題大小 */
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+header p {
+    color: var(--text-light);
+    font-size: 1.1em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-section, .recommendation-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.input-section h2, .recommendation-section h2 {
+    color: var(--family-mart-orange);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--dark-gray);
+    font-size: 1.05em;
+}
+
+.input-group input[type="number"],
+.input-group select {
+    padding: 12px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px; /* 更圓潤的輸入框 */
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input[type="number"]:focus,
+.input-group select:focus {
+    border-color: var(--family-mart-blue);
+    box-shadow: 0 0 0 3px rgba(0, 92, 175, 0.2); /* 聚焦效果 */
+    outline: none;
+}
+
+.input-group select {
+    margin-top: 8px; /* 調整間距 */
+    appearance: none; /* 移除原生下拉箭頭 */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23005CAF%22%20d%3D%22M287%2C197.3L159.3%2C69.6c-3.7-3.7-9.7-3.7-13.4%2C0L5.3%2C197.3c-3.7%2C3.7-3.7%2C9.7%2C0%2C13.4l13.4%2C13.4c3.7%2C3.7%2C9.7%2C3.7%2C13.4%2C0L146%2C106.8l113.9%2C113.9c3.7%2C3.7%2C9.7%2C3.7%2C13.4%2C0l13.4-13.4C290.7%2C207%2C290.7%2C201%2C287%2C197.3z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 12px top 50%;
+    background-size: 12px auto;
+}
+
+button {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+    padding: 14px 30px;
+    font-size: 1.15em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px; /* 更圓潤的按鈕 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px var(--shadow-light);
+}
+
+.btn-primary {
+    background-color: var(--family-mart-green);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #005a3a;
+    transform: translateY(-2px); /* 輕微上浮效果 */
+    box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+.btn-secondary {
+    background-color: var(--family-mart-orange);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: #cc5200;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+#recommendation-results {
+    min-height: 250px;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.placeholder-text {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    padding: 50px;
+    font-size: 1.1em;
+}
+
+.meal-category {
+    background-color: var(--white);
+    border: 1px solid var(--medium-gray);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px var(--shadow-light);
+    transition: transform 0.2s ease;
+}
+
+.meal-category:hover {
+    transform: translateY(-3px);
+}
+
+.meal-category h3 {
+    color: var(--family-mart-blue);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    border-bottom: 2px solid var(--medium-gray);
+    padding-bottom: 8px;
+}
+
+.meal-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.meal-item {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--medium-gray);
+    cursor: help;
+    position: relative;
+    font-size: 1em;
+    color: var(--dark-gray);
+}
+
+.meal-item:last-child {
+    border-bottom: none;
+}
+
+.meal-item .tooltip {
+    visibility: hidden;
+    width: 220px;
+    background-color: var(--dark-gray);
+    color: var(--white);
+    text-align: left;
+    border-radius: 8px;
+    padding: 12px;
+    position: absolute;
+    z-index: 10; /* 確保在最上層 */
+    bottom: 125%;
+    left: 50%;
+    margin-left: -110px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 0.9em;
+    white-space: pre-wrap;
+    box-shadow: 0 5px 15px var(--shadow-medium);
+    pointer-events: none; /* 讓滑鼠可以穿透 tooltip */
+}
+
+.meal-item .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px; /* 調整箭頭位置 */
+    border-width: 8px;
+    border-style: solid;
+    border-color: var(--dark-gray) transparent transparent transparent;
+}
+
+.meal-item:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(-5px); /* 輕微上浮動畫 */
+}
+
+.nutrition-summary {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--medium-gray);
+}
+
+.nutrition-summary h4 {
+    color: var(--family-mart-orange);
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.nutrition-summary p {
+    margin: 6px 0;
+    font-size: 0.95em;
+}
+
+.exceeded {
+    color: var(--red-alert);
+    font-weight: bold;
+}
+
+.total-nutrition-summary {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 2px solid var(--family-mart-green);
+}
+
+.total-nutrition-summary h3 {
+    color: var(--family-mart-green);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.total-nutrition-summary .nutrition-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.total-nutrition-summary .nutrition-summary-item {
+    background-color: var(--white);
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.total-nutrition-summary .nutrition-summary-item p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .container {
+        margin: 15px auto;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+
+    .input-section h2, .recommendation-section h2 {
+        font-size: 1.6em;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .input-group input[type="number"],
+    .input-group select {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    #recommendation-results {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .meal-category {
+        padding: 15px;
+    }
+
+    .meal-category h3 {
+        font-size: 1.4em;
+    }
+
+    .meal-item {
+        font-size: 0.9em;
+    }
+
+    .meal-item .tooltip {
+        width: 180px;
+        margin-left: -90px;
+        padding: 10px;
+        font-size: 0.8em;
+    }
+
+    .nutrition-summary h4 {
+        font-size: 1.1em;
+    }
+
+    .nutrition-summary p {
+        font-size: 0.85em;
+    }
+
+    .total-nutrition-summary h3 {
+        font-size: 1.5em;
+    }
+
+    .total-nutrition-summary .nutrition-summary-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .total-nutrition-summary .nutrition-summary-item p {
+        font-size: 0.85em;
+    }
+}
+
+/* For screens larger than 1200px (e.g., large monitors) */
+@media (min-width: 1201px) {
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 50px;
+    }
+
+    header h1 {
+        font-size: 3.2em;
+    }
+
+    .input-section h2, .recommendation-section h2 {
+        font-size: 2.2em;
+    }
+
+    .input-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .input-group input[type="number"],
+    .input-group select {
+        padding: 15px;
+        font-size: 1.1em;
+    }
+
+    button {
+        padding: 16px 35px;
+        font-size: 1.2em;
+    }
+
+    #recommendation-results {
+        padding: 30px;
+        gap: 30px;
+    }
+
+    .meal-category {
+        padding: 25px;
+    }
+
+    .meal-category h3 {
+        font-size: 1.8em;
+    }
+
+    .meal-item {
+        font-size: 1.05em;
+    }
+
+    .meal-item .tooltip {
+        width: 250px;
+        margin-left: -125px;
+        padding: 15px;
+        font-size: 0.95em;
+    }
+
+    .nutrition-summary h4 {
+        font-size: 1.3em;
+    }
+
+    .nutrition-summary p {
+        font-size: 1.05em;
+    }
+
+    .total-nutrition-summary h3 {
+        font-size: 2em;
+    }
+
+    .total-nutrition-summary .nutrition-summary-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .total-nutrition-summary .nutrition-summary-item p {
+        font-size: 1em;
+    }
+}
