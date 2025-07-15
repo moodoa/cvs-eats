@@ -37,7 +37,7 @@
                 {% set part = (n // 3) + (1 if n % 3 > 0 else 0) %}
 
                 <article class="meal">
-                    <h2>早餐</h2>
+                    <h2>第一餐</h2>
                     <div class="meal-items" data-meal="breakfast">
                         {% for item in items[:part] %}
                         <div class="food-card" tabindex="0" 
@@ -56,7 +56,7 @@
                 </article>
 
                 <article class="meal">
-                    <h2>午餐</h2>
+                    <h2>第二餐</h2>
                     <div class="meal-items" data-meal="lunch">
                         {% for item in items[part:part*2] %}
                         <div class="food-card" tabindex="0" 
@@ -75,7 +75,7 @@
                 </article>
 
                 <article class="meal">
-                    <h2>晚餐</h2>
+                    <h2>第三餐</h2>
                     <div class="meal-items" data-meal="dinner">
                         {% for item in items[part*2:] %}
                         <div class="food-card" tabindex="0" 
