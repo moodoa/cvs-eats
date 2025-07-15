@@ -1,7 +1,0 @@
-Flask
-pandas
-requests
-beautifulsoup4
-selenium
-webdriver-manager
-selenium-wire

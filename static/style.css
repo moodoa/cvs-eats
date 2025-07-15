@@ -1,0 +1,247 @@
+
+* {
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans TC', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #FAFAFA;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    background-color: #2B7A4B;
+    color: #F0F4F1;
+    padding: 1.25rem 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    user-select: none;
+}
+
+main {
+    max-width: 1100px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+
+form {
+    background: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    justify-content: center;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 180px;
+    font-weight: 600;
+    color: #3B6E4A;
+    font-size: 1.05rem;
+}
+
+input[type=number] {
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1.5px solid #CBD5C0;
+    transition: border-color 0.3s ease;
+    outline-offset: 3px;
+}
+
+input[type=number]:focus {
+    border-color: #2B7A4B;
+    outline: none;
+}
+
+button {
+    background-color: #4CA76B;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.9rem 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    flex: 1 1 150px;
+    max-width: 200px;
+    align-self: flex-end;
+    box-shadow: 0 5px 15px rgb(76 167 107 / 0.3);
+}
+
+button:hover {
+    background-color: #2B7A4B;
+    box-shadow: 0 8px 20px rgb(43 122 75 / 0.5);
+}
+
+
+.combo-count {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #2B7A4B;
+    text-align: center;
+}
+
+
+.result-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: white;
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 0.07);
+}
+
+
+.meals {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.meal {
+    border-left: 6px solid #4CA76B;
+    padding-left: 1rem;
+}
+
+.meal h2 {
+    margin: 0 0 0.75rem 0;
+    font-weight: 700;
+    color: #2B7A4B;
+    letter-spacing: 0.05em;
+}
+
+.meal-items {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.2rem;
+}
+
+
+.food-card {
+    background: #F9F9F9;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    min-width: 150px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.08);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-card:hover,
+.food-card:focus {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgb(0 0 0 / 0.15);
+    outline: none;
+}
+
+.food-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #4CA76B;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.food-detail {
+    margin-top: 1.5rem;
+    background: #EAF6EB;
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    box-shadow: inset 0 0 15px rgb(76 167 107 / 0.15);
+    color: #2B7A4B;
+    font-weight: 600;
+    min-height: 150px;
+    font-size: 1rem;
+}
+
+.food-detail h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: #2B7A4B;
+}
+
+.food-detail ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    line-height: 1.5;
+    list-style-type: disc;
+}
+
+.food-detail li {
+    margin-bottom: 0.3rem;
+}
+
+
+@media (min-width: 900px) {
+    .result-container {
+        flex-direction: row;
+    }
+    .meals {
+        flex-direction: row;
+        gap: 2rem;
+        flex: 3;
+    }
+    .meal-items {
+        flex-direction: column;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .food-detail {
+        flex: 1;
+        margin-top: 0;
+        margin-left: 2rem;
+        min-height: auto;
+        font-size: 1.1rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+    header {
+        font-size: 1.4rem;
+        padding: 0.8rem 0;
+    }
+    form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    button {
+        max-width: 100%;
+        width: 100%;
+    }
+    .meal-items {
+        gap: 0.6rem;
+    }
+    .food-card {
+        min-width: 120px;
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+    .food-detail {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+    }
+}

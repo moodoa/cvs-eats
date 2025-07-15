@@ -1,107 +1,108 @@
-# 全家營養餐點推薦系統
+# CVS EATS
 
-這是一個幫助使用者根據個人營養需求，隨機搭配並推薦全家便利商店食物的應用程式。系統會根據使用者輸入的總熱量、碳水化合物、蛋白質、脂肪等營養素，智慧地組合出符合需求的一日三餐。
+CVS EATS 是一個基於 Flask 的網路應用程式，旨在幫助使用者根據個人營養目標（蛋白質、熱量、鈉）從便利商店的食品中推薦合適的餐點組合。
 
 ## 功能特色
 
-*   **客製化營養需求**：使用者可輸入總熱量、碳水化合物、蛋白質、脂肪、飽和脂肪、反式脂肪、鈉、糖等營養素的目標值。
-*   **智慧餐點推薦**：
-    *   對於使用者有填寫的營養素，推薦的餐點總量會嚴格控制在目標值的 ±10% 範圍內（蛋白質除外）。
-    *   **蛋白質特例**：如果使用者輸入蛋白質目標，推薦總量需大於或等於目標值的 90%，無上限限制。
-    *   單一餐點中的食物不會重複出現。
-*   **營養超標警示**：
-    *   僅針對「飽和脂肪」、「反式脂肪」、「糖」、「鈉」這四項，當其總量超過衛福部每日建議標準時，會以紅字標示。
-    *   對於使用者未填寫的營養素，系統會盡量避免其超標。
-*   **直觀的營養資訊顯示**：滑鼠懸停在推薦食物上時，會顯示該食物的詳細營養成分。
-*   **響應式介面設計**：介面針對不同尺寸的螢幕（從 4 吋手機到 17 吋電腦）進行了優化，提供良好的閱讀體驗。
-*   **「再推薦一次」功能**：如果對當前推薦不滿意，可以重新生成。
+*   **智慧餐點推薦**：根據使用者輸入的蛋白質目標、熱量上限和鈉上限，自動生成符合條件的食品組合。
+*   **營養資訊總覽**：顯示推薦餐點組合的總熱量、蛋白質、脂肪、鈉和糖等詳細營養資訊。
+*   **直觀的使用者介面**：透過簡單的網頁表單輸入，即可獲得推薦結果。
+*   **食品資料爬取**：包含一個爬蟲工具，用於從外部來源獲取便利商店的商品資料。
 
-## 技術棧
+## 安裝指南
 
-*   **後端**：Python Flask
-    *   數據處理：Pandas
-    *   網頁請求：Requests
-    *   HTML 解析：BeautifulSoup
-*   **前端**：純 JavaScript, HTML, CSS
-*   **數據儲存**：`products.json` (包含全家商品營養資訊)
-*   **部署**：Docker
+請依照以下步驟在您的本地環境中設定並運行此專案：
 
-## 環境建置與執行
-
-請確保您的系統已安裝 Python 3.9+ 和 `pip`。
-
-### 1. 後端設定
-
-1.  **進入後端目錄**：
+1.  **複製專案**：
     ```bash
-    cd familymart-meal-planner/backend
+    git clone https://github.com/your-username/cvs-eats.git
+    cd cvs-eats
     ```
 
 2.  **建立並啟用虛擬環境**：
     ```bash
-    python3 -m venv venv
-    source venv/bin/activate
+    python3 -m venv env
+    source env/bin/activate  # macOS/Linux
+    # 或 `.\env\Scripts\activate` (Windows)
     ```
 
-3.  **安裝 Python 依賴**：
+3.  **安裝依賴套件**：
     ```bash
     pip install -r requirements.txt
     ```
+    如果 `requirements.txt` 不存在，您可能需要手動安裝 Flask 和 Requests：
+    ```bash
+    pip install Flask requests
+    ```
 
-4.  **獲取產品數據**：
-    運行 `scraper.py` 來抓取全家商品的營養資訊並生成 `products.json` 檔案。這個檔案將作為後端數據來源。
+4.  **準備食品資料**：
+    本應用程式依賴 `products.json` 檔案來獲取食品營養資料。您可以運行 `scraper.py` 來獲取部分商品資訊，但您可能需要手動建立或補充 `products.json` 檔案，使其包含詳細的營養數據。
     ```bash
     python scraper.py
+    # 這將生成 cmno_list.json，您可能需要 cmno_to_products.py 或手動處理來生成 products.json
     ```
-    *注意：此步驟可能需要一些時間，因為它會遍歷所有產品頁面。*
+    `products.json` 的格式應如下所示：
+    ```json
+    [
+        {
+            "name": "食品A",
+            "heat": 200,
+            "protein": 10,
+            "fat": 5,
+            "sat_fat": 2,
+            "trans_fat": 0,
+            "sodium": 300,
+            "sugar": 15
+        },
+        {
+            "name": "食品B",
+            "heat": 350,
+            "protein": 20,
+            "fat": 15,
+            "sat_fat": 5,
+            "trans_fat": 0,
+            "sodium": 500,
+            "sugar": 10
+        }
+    ]
+    ```
 
-5.  **啟動 Flask 後端伺服器**：
+## 使用方式
+
+1.  **啟動應用程式**：
     ```bash
     python app.py
     ```
-    伺服器將在 `http://127.0.0.1:5001` 運行。
+    應用程式將會在 `http://127.0.0.1:5000/` 運行。
 
-### 2. 前端設定
+2.  **開啟瀏覽器**：
+    在您的網頁瀏覽器中訪問 `http://127.0.0.1:5000/`。
 
-前端檔案 (HTML, CSS, JavaScript) 已整合到 Flask 應用程式中，無需單獨啟動前端伺服器。
+3.  **輸入營養目標**：
+    在網頁表單中輸入您希望的蛋白質目標、熱量上限和鈉上限，然後點擊「開始推薦」按鈕。
 
-### 3. 訪問應用程式
+4.  **查看推薦結果**：
+    應用程式將會顯示一個符合您條件的食品組合，並提供其總營養資訊。
 
-在 Flask 後端伺服器運行後，在您的瀏覽器中打開：
+## 專案結構
 
 ```
-http://127.0.0.1:5001
+.
+├── .gitignore
+├── app.py              # Flask 應用程式主文件，處理網頁請求和餐點推薦邏輯
+├── cmno_to_products.py # 可能用於將爬取的商品編號轉換為詳細產品資料
+├── LICENSE             # 專案授權文件
+├── products.json       # 儲存食品營養資料的 JSON 文件
+├── README.md           # 專案說明文件
+├── scraper.py          # 爬蟲工具，用於獲取便利商店商品列表
+├── env/                # Python 虛擬環境目錄
+├── static/
+│   ├── app.js          # 前端 JavaScript，處理食物卡片互動
+│   └── style.css       # 前端 CSS 樣式表
+└── templates/
+    └── index.html      # 網頁主頁面模板
 ```
 
-您將看到應用程式的前端介面。
+## 版權宣告
 
-## Docker 部署
-
-為了方便部署，我們提供了 `Dockerfile`。您可以使用 Docker 將整個應用程式容器化。
-
-1.  **確保您位於專案的根目錄** (`familymart-meal-planner/`)。
-
-2.  **建置 Docker 映像**：
-    ```bash
-    docker build -t familymart-meal-planner .
-    ```
-
-3.  **運行 Docker 容器**：
-    ```bash
-    docker run -p 5001:5001 familymart-meal-planner
-    ```
-    應用程式將在 `http://localhost:5001` 運行。
-
-## 公開訪問 (使用 ngrok)
-
-如果您想讓其他人也能訪問您的本地應用程式，可以使用 `ngrok`。
-
-1.  **確保您的 Flask 應用程式正在運行** (如上述步驟 1.5 所示)。
-
-2.  **啟動 ngrok 隧道**：
-    ```bash
-    ngrok http 5001
-    ```
-
-3.  `ngrok` 將在您的終端機中提供一個公共 URL (例如 `https://<random-subdomain>.ngrok-free.app`)。將此 URL 分享給其他人即可。
-
+本專案採用 [LICENSE](LICENSE) 文件中定義的授權條款。

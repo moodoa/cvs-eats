@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CVS EATS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <header>CVS EATS</header>
+    <main>
+        <form method="post" action="/">
+            <label>
+                目標蛋白質 (g)
+                <input type="number" name="protein_target" min="0" step="1" required
+                       value="{{ protein_target or '' }}" />
+            </label>
+            <label>
+                熱量上限 (kcal)
+                <input type="number" name="heat_limit" min="0" step="1" required
+                       value="{{ heat_limit or '' }}" />
+            </label>
+            <label>
+                鈉上限 (mg)
+                <input type="number" name="sodium_limit" min="0" step="1" required
+                       value="{{ sodium_limit or '' }}" />
+            </label>
+            <button type="submit">開始推薦</button>
+        </form>
+
+
+        {% if result %}
+        <section class="result-container">
+            <section class="meals" id="meals">
+                {% set items = result['items'] %}
+                {% set n = items | length %}
+                {% set part = (n // 3) + (1 if n % 3 > 0 else 0) %}
+
+                <article class="meal">
+                    <h2>早餐</h2>
+                    <div class="meal-items" data-meal="breakfast">
+                        {% for item in items[:part] %}
+                        <div class="food-card" tabindex="0" 
+                             data-name="{{ item.name }}"
+                             data-heat="{{ item.heat }}"
+                             data-protein="{{ item.protein }}"
+                             data-fat="{{ item.fat }}"
+                             data-sodium="{{ item.sodium }}"
+                             data-sugar="{{ item.sugar }}"
+                             data-sat_fat="{{ item.sat_fat }}"
+                             data-trans_fat="{{ item.trans_fat }}">
+                            <p class="food-name">{{ item.name }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </article>
+
+                <article class="meal">
+                    <h2>午餐</h2>
+                    <div class="meal-items" data-meal="lunch">
+                        {% for item in items[part:part*2] %}
+                        <div class="food-card" tabindex="0" 
+                             data-name="{{ item.name }}"
+                             data-heat="{{ item.heat }}"
+                             data-protein="{{ item.protein }}"
+                             data-fat="{{ item.fat }}"
+                             data-sodium="{{ item.sodium }}"
+                             data-sugar="{{ item.sugar }}"
+                             data-sat_fat="{{ item.sat_fat }}"
+                             data-trans_fat="{{ item.trans_fat }}">
+                            <p class="food-name">{{ item.name }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </article>
+
+                <article class="meal">
+                    <h2>晚餐</h2>
+                    <div class="meal-items" data-meal="dinner">
+                        {% for item in items[part*2:] %}
+                        <div class="food-card" tabindex="0" 
+                             data-name="{{ item.name }}"
+                             data-heat="{{ item.heat }}"
+                             data-protein="{{ item.protein }}"
+                             data-fat="{{ item.fat }}"
+                             data-sodium="{{ item.sodium }}"
+                             data-sugar="{{ item.sugar }}"
+                             data-sat_fat="{{ item.sat_fat }}"
+                             data-trans_fat="{{ item.trans_fat }}">
+                            <p class="food-name">{{ item.name }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </article>
+            </section>
+
+            <aside class="food-detail" id="food-detail">
+                {% if total_nutrition %}
+                <h3>全部推薦食物總營養</h3>
+                <ul>
+                    <li>熱量: {{ total_nutrition.heat }} kcal</li>
+                    <li>蛋白質: {{ total_nutrition.protein }} g</li>
+                    <li>脂肪: {{ total_nutrition.fat }} g (飽和脂肪: {{ total_nutrition.sat_fat }} g, 反式脂肪: {{ total_nutrition.trans_fat }} g)</li>
+                    <li>鈉含量: {{ total_nutrition.sodium }} mg</li>
+                    <li>糖: {{ total_nutrition.sugar }} g</li>
+                </ul>
+                {% else %}
+                <p>請將滑鼠移動或點選食物查看詳細資訊</p>
+                {% endif %}
+            </aside>
+
+        </section>
+        {% endif %}
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
